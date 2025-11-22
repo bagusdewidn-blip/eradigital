@@ -1,229 +1,36 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materi Sway: Warga Digital vs Jurnalisme Warga</title>
-    <!-- Memuat Tailwind CSS untuk styling -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Memuat font Inter dari Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* Style dasar untuk body, mirip dengan antarmuka Sway yang bersih */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F3F4F6; /* Latar belakang abu-abu muda */
-        }
-        /* Kontainer utama untuk materi */
-        .sway-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-        }
-        /* Setiap "Kartu" materi di Sway */
-        .sway-card {
-            background-color: #FFFFFF;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 24px;
-            overflow: hidden; /* Penting untuk gambar */
-        }
-        .sway-card-header {
-            background-color: #4F46E5; /* Warna aksen (Indigo) */
-            color: #FFFFFF;
-            padding: 20px 24px;
-            font-size: 1.5rem; /* 24px */
-            font-weight: 700;
-        }
-        .sway-card-body {
-            padding: 24px;
-            line-height: 1.7;
-            color: #374151; /* Gray-700 */
-        }
-        .sway-card-body h3 {
-            font-size: 1.25rem; /* 20px */
-            font-weight: 600;
-            color: #1F2937; /* Gray-800 */
-            margin-bottom: 12px;
-        }
-        .sway-card-body p {
-            margin-bottom: 16px;
-        }
-        .sway-card-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        .highlight {
-            background-color: #EEF2FF; /* Indigo-100 */
-            color: #4338CA; /* Indigo-700 */
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #E5E7EB; /* Gray-200 */
-            padding: 12px;
-            text-align: left;
-        }
-        .comparison-table th {
-            background-color: #F9FAFB; /* Gray-50 */
-        }
-    </style>
-</head>
-<body>
-
-    <div class="sway-container">
-
-        <!-- KARTU 1: JUDUL UTAMA -->
-        <div class="sway-card">
-            <div class="sway-card-header" style="background-color: #111827; text-align: center;">
-                WARGA DIGITAL vs JURNALISME WARGA
-            </div>
-            <div class="sway-card-body text-center">
-                <p class="text-lg text-gray-500">Membedah Status, Aksi, dan Tanggung Jawab di Era Digital</p>
-                <p class="text-sm">Disusun oleh: [Nama Mahasiswa Anda] / [NIM Anda]</p>
-            </div>
-        </div>
-
-        <!-- KARTU 2: PENGENALAN / ANALOGI -->
-        <div class="sway-card">
-            <div class="sway-card-body">
-                <h3>Mari Gunakan Analogi: Dunia Digital adalah Sebuah KOTA BESAR</h3>
-                <p>Bayangkan internet dan dunia maya adalah sebuah kota metropolitan yang super sibuk dan tidak pernah tidur.</p>
-                <p>Di kota ini, ada jutaan orang yang tinggal, bekerja, berbelanja, dan bersosialisasi. Ada aturan lalu lintas, ada etika bertetangga, dan tentu saja, ada juga risiko kejahatan.</p>
-                <p>Sekarang, mari kita lihat di mana posisi "Warga Digital" dan "Jurnalisme Warga" di dalam kota ini.</p>
-            </div>
-        </div>
-
-        <!-- KARTU 3: BAGIAN 1 - WARGA DIGITAL -->
-        <div class="sway-card">
-            <div class="sway-card-header">
-                BAGIAN 1: Siapa itu Warga Digital?
-            </div>
-            <div class="sway-card-body">
-                <h3>Mereka adalah <span class="highlight">PENDUDUK KOTA</span></h3>
-                <p>Warga Digital (Digital Citizen) adalah **STATUS** atau identitas kita sebagai "penduduk" resmi di kota digital.</p>
-                <p>Ini adalah konsep yang menggambarkan **semua orang** yang menggunakan teknologi digital. Jika Anda memiliki akun media sosial, menggunakan email, atau bahkan hanya membaca berita online, Anda adalah seorang warga digital.</p>
-                
-                <h3>Karakteristik (Perilaku Penduduk yang Baik):</h3>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>**Tahu Aturan (Hukum Digital):** Mengerti "rambu lalu lintas" di dunia maya. Tahu apa itu UU ITE, tidak mencuri karya (plagiat/pembajakan), dan tidak melakukan penipuan.</li>
-                    <li>**Tahu Sopan Santun (Etika Digital):** Mengerti cara "bertetangga" dengan baik. Berkomentar dengan sopan (netiket), tidak melakukan *cyberbullying*, dan menghargai privasi orang lain.</li>
-                    <li>**Tahu Keamanan (Keamanan Digital):** Mengerti cara menjaga diri. "Mengunci pintu rumah" (pakai kata sandi kuat), waspada pada "penipu" (*phishing*), dan tidak sembarangan membagikan data pribadi.</li>
-                    <li>**Tahu Berinteraksi (Literasi & Komunikasi):** Mampu "membaca peta" kota (mencari informasi) dan bisa membedakan mana info benar dan mana hoaks.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- KARTU 4: BAGIAN 2 - JURNALISME WARGA -->
-        <div class="sway-card">
-            <div class="sway-card-header">
-                BAGIAN 2: Apa itu Jurnalisme Warga?
-            </div>
-            <div class="sway-card-body">
-                <h3>Mereka adalah <span class="highlight">PELAPOR KEJADIAN DI KOTA</span></h3>
-                <p>Jurnalisme Warga (Citizen Journalism) adalah **AKTIVITAS** atau **PERAN** spesifik yang dilakukan oleh seorang penduduk (warga digital).</p>
-                <p>Ini adalah **tindakan** aktif saat seorang warga biasa (bukan wartawan profesional) secara independen **mengumpulkan, melaporkan, dan menyebarkan informasi** tentang sebuah peristiwa di kota itu kepada publik.</p>
-
-                <h3>Karakteristik (Aktivitas Sang Pelapor):</h3>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>**Partisipatif & Independen:** Dia melapor atas inisiatif sendiri. Bukan karena disuruh oleh kantor berita.</li>
-                    <li>**Cepat & *Real-Time*:** Saat melihat "kebakaran", dia langsung merekam dengan ponselnya dan mengunggahnya detik itu juga.</li>
-                    <li>**Berbasis UGC (*User-Generated Content*):** Kontennya (video, foto, tulisan) dibuat oleh dia sebagai pengguna, bukan oleh jurnalis terlatih.</li>
-                    <li>**Cenderung Subjektif:** Laporannya adalah "laporan pandangan mata". Seringkali emosional ("Ngeri sekali! Api besar!") dan tidak melalui proses verifikasi fakta atau editing redaksi.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- KARTU 5: PERBANDINGAN -->
-        <div class="sway-card">
-            <div class="sway-card-header" style="background-color: #1F2937;">
-                Perbandingan Kunci: Penduduk vs. Pelapor
-            </div>
-            <div class="sway-card-body">
-                <p>Jadi, inilah perbedaan intinya dalam satu tabel:</p>
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Kriteria</th>
-                            <th>Warga Digital (Penduduk Kota)</th>
-                            <th>Jurnalisme Warga (Pelapor Kota)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>**Konsep**</td>
-                            <td>**STATUS** (Menjadi penduduk)</td>
-                            <td>**AKSI** (Melakukan pelaporan)</td>
-                        </tr>
-                        <tr>
-                            <td>**Ruang Lingkup**</td>
-                            <td>**LUAS** (Semua aktivitas: belanja, belajar, kerja, main game)</td>
-                            <td>**SEMPIT** (Hanya aktivitas spesifik terkait "berita")</td>
-                        </tr>
-                        <tr>
-                            <td>**Siapa**</td>
-                            <td>**SEMUA ORANG** yang online</td>
-                            <td>**ORANG TERTENTU** yang sedang melapor</td>
-                        </tr>
-                        <tr>
-                            <td>**Tujuan**</td>
-                            <td>Menjadi anggota masyarakat digital yang baik & bertanggung jawab</td>
-                            <td>Menginformasikan publik dari sudut pandang warga</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- KARTU 6: MENGAPA PENTING? -->
-        <div class="sway-card">
-            <div class="sway-card-body">
-                <h3>Mengapa Perbedaan Ini Penting?</h3>
-                <p>Karena **Tingkat Tanggung Jawabnya Berbeda.**</p>
-                
-                <p>Sebagai <span class="highlight">WARGA DIGITAL</span> (Penduduk):</p>
-                <p>Tanggung jawab utama kita adalah pada **diri sendiri dan interaksi langsung.**<br>
-                *Contoh: "Saya tidak akan menipu", "Saya tidak akan menghina tetangga saya di grup WA", "Saya akan menjaga password saya."*</p>
-                
-                <p>Saat bertindak sebagai <span class="highlight">JURNALIS WARGA</span> (Pelapor):</p>
-                <p>Tanggung jawab kita **meluas kepada PUBLIK.** Laporan kita bisa mempengaruhi opini massa, memicu kepanikan, atau berdampak hukum.<br>
-                *Contoh: "Apakah video korban kecelakaan yang saya sebar ini melanggar etika?", "Apakah info saya soal 'penyebab' kebakaran ini sudah benar atau hanya asumsi?", "Apa dampak dari caption yang saya tulis?"*</p>
-            </div>
-        </div>
-
-        <!-- KARTU 7: KESIMPULAN & REFERENSI -->
-        <div class="sway-card">
-            <div class="sway-card-body">
-                <h3>Kesimpulan</h3>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li>**Warga Digital** adalah status kita sebagai pengguna teknologi yang sadar akan etika, keamanan, dan literasi (Fokus: *Being*).</li>
-                    <li>**Jurnalisme Warga** adalah peran atau aktivitas spesifik yang bisa dilakukan warga digital untuk melaporkan peristiwa (Fokus: *Doing*).</li>
-                    <li>Menjadi Warga Digital yang baik adalah **fondasi** wajib bagi semua orang.</li>
-                    <li>Menjadi Jurnalis Warga adalah **pilihan peran** yang menuntut tanggung jawab etis lebih besar karena berdampak langsung pada publik.</li>
-                </ol>
-
-                <hr class="my-6">
-
-                <h3 class="text-base font-semibold">Referensi</h3>
-                <ul class="list-disc list-inside text-sm text-gray-500">
-                    <li>Universitas Terbuka. (2024). *Materi Inisiasi BMP MKWI4202: Belajar di Era Digital*.</li>
-                    <li>Kementerian Komunikasi dan Informatika (Kominfo). (2021). *Modul Literasi Digital: Etika Digital*. (Link: https://literasidigital.id/books/modul-etika-digital/)</li>
-                    <li>Ribble, M. (2015). *Digital Citizenship in Schools: Nine Elements All Students Should Know*. (Situs rujukan: https://www.digitalcitizenship.net/nine-elements.html)</li>
-                    <li>Haryanto, Ignatius. (2007). Jurnalisme Warga: Ketika Pers Bukan Lagi Milik Wartawan. *Jurnal Komunikasi: Malaysian Journal of Communication*, Jilid 23. (Link: https://core.ac.uk/download/pdf/11712499.pdf)</li>
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-</body>
-</html>
+Layanan Adminduk C-A-K-A-P 
+(Prototipe)Cepat • Akuntabel • Kolaboratif • Adaptif • ProaktifPrototipe 
+aplikasi ini dirancang sebagai solusi inovatif untuk mengatasi permasalahan pelayanan publik pada Dinas Kependudukan dan Pencatatan Sipil (Disdukcapil), 
+khususnya terkait ketidakpastian waktu dan prosedur yang berbelit dalam penerbitan dokumen kependudukan.
+📋 Tentang ProyekAplikasi ini menggabungkan pendekatan New Public Management (NPM)
+melalui digitalisasi sistem dan New Public Service (NPS) melalui fitur-fitur yang berorientasi pada pelayanan warga.
+Filosofi C-A-K-A-P
+Cepat
+Otomatisasi verifikasi dan pemangkasan birokrasi.
+Akuntabel
+Pelacakan (tracking) status dokumen secara real-time dan transparan.
+Kolaboratif
+Integrasi data antar lembaga (simulasi)
+Adaptif
+Menyesuaikan dengan teknologi terkini (Mobile-first design)
+Proakti
+Memberikan notifikasi dan solusi alternatif (IKD) sebelum warga bertanya.
+✨ Fitur UtamaSistem Pelacakan (Tracking) Real-TimeWarga dapat memasukkan Nomor Registrasi atau NIK untuk melihat posisi dokumen mereka 
+(Pengajuan -> Verifikasi -> Biometrik -> Pencetakan).
+Menjawab masalah "Ketidakpastian Waktu".Identitas Kependudukan Digital (IKD)Kartu digital dengan efek holografik modern.
+Solusi alternatif (Virtualisasi Dokumen) ketika blanko fisik habis.
+Notifikasi ProaktifPopup notifikasi yang memberitahu warga mengenai status pengajuan atau saran aktivasi IKD tanpa perlu mengecek manual terus-menerus.
+Simulasi PengajuanFitur demo untuk membuat pengajuan baru dan melihat bagaimana sistem memproses data secara otomatis.
+🚀 Cara MenjalankanPrototipe ini dibangun sebagai Single File HTML agar mudah didistribusikan dan dijalankan tanpa instalasi server yang rumit.
+Pastikan Anda memiliki file final_app_cakap.html.Klik dua kali file tersebut atau klik kanan > Open with > Google Chrome / Microsoft Edge.Aplikasi akan berjalan langsung di browser Anda.
+Catatan: Pastikan perangkat terhubung ke internet saat pertama kali membuka untuk memuat Tailwind CSS dan Lucide Icons (CDN).
+🔐 Akun DemoGunakan kredensial berikut untuk masuk ke dalam sistem simulasi:
+NIK: 1234567890123456
+Password: admin123(Anda juga dapat mencoba fitur Registrasi, namun data hanya tersimpan sementara di memori browser)
+🛠️ Teknologi yang DigunakanHTML5: Struktur aplikasi.Tailwind CSS (via CDN): Styling antarmuka yang modern dan responsif (Mobile-first).
+Lucide Icons: Ikonografi yang bersih dan informatif.Vanilla JavaScript: Logika aplikasi, manajemen state sederhana, dan database simulasi (mock database).
+📚 Referensi PengembanganPrototipe ini dikembangkan berdasarkan analisis masalah pada Tugas Berpraktik Manajemen Pelayanan Umum (IPEM4429):
+Transformasi Digital (Pilar Sistem).
+Transformasi Kompetensi SDM (Pilar Manusia).
+Dibuat oleh Sefti Indriyani (NIM: 054365926) 
+- Program Studi Ilmu Pemerintahan Universitas Terbuka.
