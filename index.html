@@ -2,228 +2,436 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Materi Sway: Warga Digital vs Jurnalisme Warga</title>
-    <!-- Memuat Tailwind CSS untuk styling -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Adminduk C-A-K-A-P (Master Version)</title>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Memuat font Inter dari Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Style dasar untuk body, mirip dengan antarmuka Sway yang bersih */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #F3F4F6; /* Latar belakang abu-abu muda */
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Animations */
+        @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
+
+        @keyframes slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
+        
+        /* Holographic effect for IKD */
+        .holo-card {
+            background: linear-gradient(135deg, #4f46e5 0%, #818cf8 50%, #c084fc 100%);
+            position: relative;
+            overflow: hidden;
         }
-        /* Kontainer utama untuk materi */
-        .sway-container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
+        .holo-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -50%; width: 200%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.3), transparent);
+            transform: skewX(-25deg);
+            animation: shine 6s infinite;
         }
-        /* Setiap "Kartu" materi di Sway */
-        .sway-card {
-            background-color: #FFFFFF;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            margin-bottom: 24px;
-            overflow: hidden; /* Penting untuk gambar */
-        }
-        .sway-card-header {
-            background-color: #4F46E5; /* Warna aksen (Indigo) */
-            color: #FFFFFF;
-            padding: 20px 24px;
-            font-size: 1.5rem; /* 24px */
-            font-weight: 700;
-        }
-        .sway-card-body {
-            padding: 24px;
-            line-height: 1.7;
-            color: #374151; /* Gray-700 */
-        }
-        .sway-card-body h3 {
-            font-size: 1.25rem; /* 20px */
-            font-weight: 600;
-            color: #1F2937; /* Gray-800 */
-            margin-bottom: 12px;
-        }
-        .sway-card-body p {
-            margin-bottom: 16px;
-        }
-        .sway-card-image {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        .highlight {
-            background-color: #EEF2FF; /* Indigo-100 */
-            color: #4338CA; /* Indigo-700 */
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-weight: 600;
-        }
-        .comparison-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        .comparison-table th, .comparison-table td {
-            border: 1px solid #E5E7EB; /* Gray-200 */
-            padding: 12px;
-            text-align: left;
-        }
-        .comparison-table th {
-            background-color: #F9FAFB; /* Gray-50 */
-        }
+        @keyframes shine { 0% { left: -50%; } 20% { left: 100%; } 100% { left: 100%; } }
     </style>
 </head>
-<body>
+<body class="flex justify-center min-h-screen">
 
-    <div class="sway-container">
-
-        <!-- KARTU 1: JUDUL UTAMA -->
-        <div class="sway-card">
-            <div class="sway-card-header" style="background-color: #111827; text-align: center;">
-                WARGA DIGITAL vs JURNALISME WARGA
+    <!-- MOBILE CONTAINER -->
+    <div id="app-container" class="w-full max-w-md bg-white min-h-screen shadow-2xl relative overflow-hidden flex flex-col">
+        
+        <!-- 1. SPLASH SCREEN -->
+        <div id="splash-screen" class="absolute inset-0 z-50 bg-indigo-600 flex flex-col items-center justify-center text-white transition-opacity duration-500">
+            <div class="w-24 h-24 bg-white rounded-full flex items-center justify-center mb-4 shadow-lg animate-bounce">
+                <i data-lucide="shield-check" class="w-12 h-12 text-indigo-600"></i>
             </div>
-            <div class="sway-card-body text-center">
-                <p class="text-lg text-gray-500">Membedah Status, Aksi, dan Tanggung Jawab di Era Digital</p>
-                <p class="text-sm">Disusun oleh: BAGUS HIDAYATULLOH / 053569179</p>
+            <h1 class="text-3xl font-bold tracking-widest">C-A-K-A-P</h1>
+            <p class="text-indigo-200 text-sm mt-2">Cepat • Akuntabel • Kolaboratif • Adaptif • Proaktif</p>
+        </div>
+
+        <!-- 2. AUTH SCREENS -->
+        <div id="auth-screen" class="hidden flex-1 p-6 flex flex-col justify-center bg-white">
+            <div class="text-center mb-8">
+                <h2 class="text-2xl font-bold text-gray-800">Selamat Datang</h2>
+                <p class="text-gray-500">Silakan masuk untuk mengakses layanan.</p>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">NIK (Nomor Induk Kependudukan)</label>
+                    <input type="number" id="login-nik" value="1234567890123456" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="16 Digit NIK">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold text-gray-600 mb-1">Password</label>
+                    <input type="password" id="login-pass" value="admin123" class="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none transition" placeholder="Kata sandi">
+                </div>
+                <button onclick="handleLogin()" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl shadow-lg hover:bg-indigo-700 transition transform active:scale-95">
+                    MASUK
+                </button>
+                <p class="text-center text-sm text-gray-500 mt-4">
+                    Belum punya akun? <span onclick="toggleAuthMode('register')" class="text-indigo-600 font-bold cursor-pointer">Daftar Sekarang</span>
+                </p>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="hidden space-y-3 overflow-y-auto max-h-[80vh] no-scrollbar pb-10">
+                <h3 class="font-bold text-indigo-600">Data Diri</h3>
+                <input type="text" class="w-full p-3 bg-gray-50 rounded-lg border text-sm" placeholder="Nama Lengkap">
+                <input type="number" class="w-full p-3 bg-gray-50 rounded-lg border text-sm" placeholder="NIK">
+                <input type="number" class="w-full p-3 bg-gray-50 rounded-lg border text-sm" placeholder="No. Kartu Keluarga">
+                <button onclick="handleRegister()" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl mt-4">DAFTAR AKUN</button>
+                <p class="text-center text-sm text-gray-500 mt-2 mb-4">
+                    Sudah punya akun? <span onclick="toggleAuthMode('login')" class="text-indigo-600 font-bold cursor-pointer">Login</span>
+                </p>
             </div>
         </div>
 
-        <!-- KARTU 2: PENGENALAN / ANALOGI -->
-        <div class="sway-card">
-            <div class="sway-card-body">
-                <h3>Mari Gunakan Analogi: Dunia Digital adalah Sebuah KOTA BESAR</h3>
-                <p>Bayangkan internet dan dunia maya adalah sebuah kota metropolitan yang super sibuk dan tidak pernah tidur.</p>
-                <p>Di kota ini, ada jutaan orang yang tinggal, bekerja, berbelanja, dan bersosialisasi. Ada aturan lalu lintas, ada etika bertetangga, dan tentu saja, ada juga risiko kejahatan.</p>
-                <p>Sekarang, mari kita lihat di mana posisi "Warga Digital" dan "Jurnalisme Warga" di dalam kota ini.</p>
+        <!-- 3. MAIN APP CONTENT -->
+        <div id="main-content" class="hidden flex-1 flex flex-col relative bg-gray-50 overflow-hidden">
+            
+            <!-- TOP BAR -->
+            <header class="bg-white p-4 shadow-sm sticky top-0 z-20 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 font-bold">
+                        <i data-lucide="user" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <p class="text-xs text-gray-500">Halo, Warga</p>
+                        <h3 id="header-username" class="font-bold text-gray-800 leading-none">Nama Pengguna</h3>
+                    </div>
+                </div>
+                <!-- Notification Button -->
+                <button onclick="toggleNotifications()" class="p-2 hover:bg-gray-100 rounded-full relative transition">
+                    <i data-lucide="bell" class="w-6 h-6 text-gray-600"></i>
+                    <span id="notif-badge" class="absolute top-1 right-1 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white animate-pulse hidden"></span>
+                </button>
+            </header>
+
+            <!-- SCROLLABLE CONTENT AREA -->
+            <main id="page-content" class="flex-1 overflow-y-auto p-4 pb-24 no-scrollbar">
+                <!-- Content injected via JS -->
+            </main>
+
+            <!-- BOTTOM NAVIGATION -->
+            <nav class="bg-white border-t border-gray-200 absolute bottom-0 w-full flex justify-around py-3 px-2 pb-5 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+                <button onclick="switchTab('home')" class="nav-btn text-indigo-600" data-target="home"><i data-lucide="home" class="w-6 h-6"></i><span class="text-[10px] font-bold">Beranda</span></button>
+                <button onclick="switchTab('tracking')" class="nav-btn text-gray-400" data-target="tracking"><i data-lucide="search" class="w-6 h-6"></i><span class="text-[10px] font-bold">Lacak</span></button>
+                <div class="relative -top-8">
+                    <button onclick="switchTab('layanan')" class="w-14 h-14 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg transform transition hover:scale-105 active:scale-95"><i data-lucide="plus" class="w-8 h-8"></i></button>
+                </div>
+                <button onclick="switchTab('ikd')" class="nav-btn text-gray-400" data-target="ikd"><i data-lucide="smartphone" class="w-6 h-6"></i><span class="text-[10px] font-bold">IKD</span></button>
+                <button onclick="switchTab('profile')" class="nav-btn text-gray-400" data-target="profile"><i data-lucide="user-cog" class="w-6 h-6"></i><span class="text-[10px] font-bold">Profil</span></button>
+            </nav>
+
+            <!-- 4. NOTIFICATION MODAL (POPUP) -->
+            <div id="notif-modal" class="absolute inset-0 bg-black/50 z-50 hidden flex items-end transition-opacity duration-300">
+                <div class="bg-white w-full rounded-t-2xl max-h-[70vh] overflow-y-auto animate-slide-up shadow-2xl">
+                    <div class="p-4 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white z-10">
+                        <h3 class="font-bold text-lg text-gray-800">Notifikasi</h3>
+                        <button onclick="toggleNotifications()" class="p-1 bg-gray-100 rounded-full text-gray-500 hover:bg-gray-200"><i data-lucide="x" class="w-5 h-5"></i></button>
+                    </div>
+                    <div id="notif-list" class="p-4 space-y-3 pb-10">
+                        <!-- Notif items injected via JS -->
+                    </div>
+                    <div class="p-4 border-t border-gray-100 text-center">
+                        <button onclick="markAllRead()" class="text-xs font-bold text-indigo-600 uppercase tracking-wide">Tandai Semua Dibaca</button>
+                    </div>
+                </div>
             </div>
+
         </div>
-
-        <!-- KARTU 3: BAGIAN 1 - WARGA DIGITAL -->
-        <div class="sway-card">
-            <div class="sway-card-header">
-                BAGIAN 1: Siapa itu Warga Digital?
-            </div>
-            <div class="sway-card-body">
-                <h3>Mereka adalah <span class="highlight">PENDUDUK KOTA</span></h3>
-                <p>Warga Digital (Digital Citizen) adalah <b>STATUS</b> atau identitas kita sebagai "penduduk" resmi di kota digital.</p>
-                <p>Ini adalah konsep yang menggambarkan semua orang yang menggunakan teknologi digital. Jika Anda memiliki akun media sosial, menggunakan email, atau bahkan hanya membaca berita online, Anda adalah seorang warga digital.</p>
-                
-                <h3>Karakteristik (Perilaku Penduduk yang Baik):</h3>
-                <ul class="list-disc list-inside space-y-2">
-                    <li>Tahu Aturan (Hukum Digital) Mengerti "rambu lalu lintas" di dunia maya. Tahu apa itu UU ITE, tidak mencuri karya (plagiat/pembajakan), dan tidak melakukan penipuan.</li>
-                    <li><b> Tahu Sopan Santun (Etika Digital):</b> Mengerti cara "bertetangga" dengan baik. Berkomentar dengan sopan (netiket), tidak melakukan cyberbullying, dan menghargai privasi orang lain.</li>
-                    <li><b> Tahu Keamanan (Keamanan Digital)</b>: Mengerti cara menjaga diri. "Mengunci pintu rumah" (pakai kata sandi kuat), waspada pada "penipu" (phishing), dan tidak sembarangan membagikan data pribadi.</li>
-                    <li><b> Tahu Berinteraksi (Literasi & Komunikasi)</b>: Mampu "membaca peta" kota (mencari informasi) dan bisa membedakan mana info benar dan mana hoaks.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- KARTU 4: BAGIAN 2 - JURNALISME WARGA -->
-        <div class="sway-card">
-            <div class="sway-card-header">
-                BAGIAN 2: Apa itu Jurnalisme Warga?
-            </div>
-            <div class="sway-card-body">
-                <h3>Mereka adalah <span class="highlight">PELAPOR KEJADIAN DI KOTA</span></h3>
-                <p>Jurnalisme Warga (Citizen Journalism) adalah AKTIVITAS atau PERAN spesifik yang dilakukan oleh seorang penduduk (warga digital).</p>
-                <p>Ini adalah tindakan aktif saat seorang warga biasa (bukan wartawan profesional) secara independen mengumpulkan, melaporkan, dan menyebarkan informasi tentang sebuah peristiwa di kota itu kepada publik.</p>
-
-                <h3>Karakteristik (Aktivitas Sang Pelapor):</h3>
-                <ul class="list-disc list-inside space-y-2">
-                    <li><b>Partisipatif & Independen:</b> Dia melapor atas inisiatif sendiri. Bukan karena disuruh oleh kantor berita.</li>
-                    <li><b>Cepat & Real-Time:</b> Saat melihat "kebakaran", dia langsung merekam dengan ponselnya dan mengunggahnya detik itu juga.</li>
-                    <li><b> UGC (User-Generated Content):</b> Kontennya (video, foto, tulisan) dibuat oleh dia sebagai pengguna, bukan oleh jurnalis terlatih.</li>
-                    <li><b>Cenderung Subjektif:</b> Laporannya adalah "laporan pandangan mata". Seringkali emosional ("Ngeri sekali! Api besar!") dan tidak melalui proses verifikasi fakta atau editing redaksi.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- KARTU 5: PERBANDINGAN -->
-        <div class="sway-card">
-            <div class="sway-card-header" style="background-color: #1F2937;">
-                Perbandingan Kunci: Penduduk vs. Pelapor
-            </div>
-            <div class="sway-card-body">
-                <p>Jadi, inilah perbedaan intinya dalam satu tabel:</p>
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Kriteria</th>
-                            <th>Warga Digital (Penduduk Kota)</th>
-                            <th>Jurnalisme Warga (Pelapor Kota)</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Konsep</td>
-                            <td>STATUS(Menjadi penduduk)</td>
-                            <td>AKSI (Melakukan pelaporan)</td>
-                        </tr>
-                        <tr>
-                            <td>Ruang Lingkup</td>
-                            <td>LUAS (Semua aktivitas: belanja, belajar, kerja, main game)</td>
-                            <td>SEMPIT (Hanya aktivitas spesifik terkait "berita")</td>
-                        </tr>
-                        <tr>
-                            <td>Siapa</td>
-                            <td>SEMUA ORANG yang online</td>
-                            <td>ORANG TERTENTU yang sedang melapor</td>
-                        </tr>
-                        <tr>
-                            <td>Tujuan</td>
-                            <td>Menjadi anggota masyarakat digital yang baik & bertanggung jawab</td>
-                            <td>Menginformasikan publik dari sudut pandang warga</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- KARTU 6: MENGAPA PENTING? -->
-        <div class="sway-card">
-            <div class="sway-card-body">
-                <h3>Mengapa Perbedaan Ini Penting?</h3>
-                <p>Karena Tingkat Tanggung Jawabnya Berbeda.</p>
-                
-                <p>Sebagai <span class="highlight">WARGA DIGITAL</span> (Penduduk):</p>
-                <p>Tanggung jawab utama kita adalah pada diri sendiri dan interaksi langsung.<br>
-                Contoh: "Saya tidak akan menipu", "Saya tidak akan menghina tetangga saya di grup WA", "Saya akan menjaga password saya."</p>
-                
-                <p>Saat bertindak sebagai <span class="highlight">JURNALIS WARGA</span> (Pelapor):</p>
-                <p>Tanggung jawab kita meluas kepada PUBLIK. Laporan kita bisa mempengaruhi opini massa, memicu kepanikan, atau berdampak hukum.<br>
-                Contoh: "Apakah video korban kecelakaan yang saya sebar ini melanggar etika?", "Apakah info saya soal 'penyebab' kebakaran ini sudah benar atau hanya asumsi?", "Apa dampak dari caption yang saya tulis?"</p>
-            </div>
-        </div>
-
-        <!-- KARTU 7: KESIMPULAN & REFERENSI -->
-        <div class="sway-card">
-            <div class="sway-card-body">
-                <h3>Kesimpulan</h3>
-                <ol class="list-decimal list-inside space-y-2">
-                    <li><b>Warga Digital</b> adalah status kita sebagai pengguna teknologi yang sadar akan etika, keamanan, dan literasi (Fokus: Being).</li>
-                    <li><b>Jurnalisme Warga</b> adalah peran atau aktivitas spesifik yang bisa dilakukan warga digital untuk melaporkan peristiwa (Fokus: Doing).</li>
-                    <li>Menjadi Warga Digital yang baik adalah fondasi wajib bagi semua orang.</li>
-                    <li>Menjadi Jurnalis Warga adalah pilihan peran yang menuntut tanggung jawab etis lebih besar karena berdampak langsung pada publik.</li>
-                </ol>
-
-                <hr class="my-6">
-
-                <h3 class="text-base font-semibold">Referensi</h3>
-                <ul class="list-disc list-inside text-sm text-gray-500">
-                    <li>Universitas Terbuka. (2024). Materi BMP MKWI4202: Belajar di Era Digital.</li>
-                    <li>Kementerian Komunikasi dan Informatika (Kominfo). (2021). Modul Literasi Digital: Etika Digital. <a href="//literasidigital.id/books/modul-etika-digital/">Link</a></li>
-                    <li>Ribble, M. (2015). Digital Citizenship in Schools: Nine Elements All Students Should Know. (Situs rujukan: <a href="//www.digitalcitizenship.net/nine-elements.html">Link</a>)</li>
-                    <li>Haryanto, Ignatius. (2007). Jurnalisme Warga: Ketika Pers Bukan Lagi Milik Wartawan. Jurnal Komunikasi: Malaysian Journal of Communication, Jilid 23. (<a href="//core.ac.uk/download/pdf/11712499.pdf">Link</a>)</li>
-                </ul>
-            </div>
-        </div>
-
     </div>
 
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- 1. DATABASE "MOCK" ---
+        const mockDB = {
+            users: [{ nik: "1234567890123456", password: "admin123", name: "Sefti Indriyani", kk: "3201000000000001", address: "Jl. Mawar No. 10, Bandar Lampung" }],
+            // Default kosong agar User bisa menekan tombol Simulasi
+            tracking: [], 
+            services: [
+                { id: 'ktp', name: "Buat E-KTP", icon: "id-card", bg: "bg-blue-100", color: "text-blue-600" },
+                { id: 'kk', name: "Kartu Keluarga", icon: "users", bg: "bg-green-100", color: "text-green-600" },
+                { id: 'pindah', name: "Surat Pindah", icon: "truck", bg: "bg-orange-100", color: "text-orange-600" },
+                { id: 'akta', name: "Akta Lahir", icon: "baby", bg: "bg-pink-100", color: "text-pink-600" },
+                { id: 'kia', name: "Kartu Anak (KIA)", icon: "smile", bg: "bg-purple-100", color: "text-purple-600" },
+                { id: 'mati', name: "Akta Kematian", icon: "file-minus", bg: "bg-gray-200", color: "text-gray-600" },
+            ],
+            notifications: [
+                { id: 1, title: "Pengingat IKD (Proaktif)", message: "Hindari kelangkaan blanko! Segera aktifkan Identitas Kependudukan Digital Anda sekarang.", time: "Baru saja", type: "alert", read: false },
+                { id: 3, title: "Selamat Datang", message: "Selamat datang di aplikasi C-A-K-A-P.", time: "1 hari yang lalu", type: "info", read: true }
+            ]
+        };
+
+        let currentUser = null;
+        let activeTab = 'home';
+
+        // --- 2. LOGIKA UTAMA ---
+        window.onload = () => {
+            lucide.createIcons();
+            setTimeout(() => {
+                document.getElementById('splash-screen').classList.add('opacity-0');
+                setTimeout(() => {
+                    document.getElementById('splash-screen').style.display = 'none';
+                    document.getElementById('auth-screen').classList.remove('hidden');
+                }, 500);
+            }, 2000);
+        };
+
+        function toggleAuthMode(mode) {
+            if(mode === 'register') {
+                document.getElementById('login-form').classList.add('hidden');
+                document.getElementById('register-form').classList.remove('hidden');
+            } else {
+                document.getElementById('login-form').classList.remove('hidden');
+                document.getElementById('register-form').classList.add('hidden');
+            }
+        }
+
+        function handleLogin() {
+            const nik = document.getElementById('login-nik').value;
+            const pass = document.getElementById('login-pass').value;
+            const user = mockDB.users.find(u => u.nik === nik && u.password === pass);
+
+            if (user) {
+                currentUser = user;
+                document.getElementById('auth-screen').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+                document.getElementById('header-username').textContent = user.name;
+                updateNotifBadge();
+                renderPage('home');
+            } else {
+                alert("Gunakan NIK: 1234567890123456 dan Pass: admin123");
+            }
+        }
+
+        function handleRegister() {
+            alert("Registrasi Berhasil! Silakan Login.");
+            toggleAuthMode('login');
+        }
+
+        function switchTab(tabName) {
+            activeTab = tabName;
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const isTarget = btn.dataset.target === tabName;
+                btn.className = isTarget ? 'nav-btn text-indigo-600 flex flex-col items-center' : 'nav-btn text-gray-400 flex flex-col items-center';
+            });
+            renderPage(tabName);
+        }
+
+        // --- 3. LOGIKA NOTIFIKASI ---
+        function toggleNotifications() {
+            const modal = document.getElementById('notif-modal');
+            const listContainer = document.getElementById('notif-list');
+            
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                listContainer.innerHTML = '';
+
+                if (mockDB.notifications.length === 0) {
+                    listContainer.innerHTML = '<p class="text-center text-gray-500 text-sm py-10">Tidak ada notifikasi.</p>';
+                } else {
+                    mockDB.notifications.forEach(notif => {
+                        let icon = notif.type === 'alert' ? 'smartphone' : notif.type === 'success' ? 'check-circle' : 'info';
+                        let bgClass = notif.type === 'alert' ? 'bg-yellow-100 text-yellow-600' : notif.type === 'success' ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-blue-600';
+                        const isReadClass = notif.read ? 'opacity-60' : 'bg-indigo-50/50 border-l-4 border-indigo-500';
+
+                        listContainer.innerHTML += `
+                            <div class="flex gap-3 p-3 rounded-lg ${isReadClass} transition-colors">
+                                <div class="flex-shrink-0 w-10 h-10 ${bgClass} rounded-full flex items-center justify-center">
+                                    <i data-lucide="${icon}" class="w-5 h-5"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <div class="flex justify-between items-start">
+                                        <h4 class="text-sm font-bold text-gray-800">${notif.title}</h4>
+                                        <span class="text-[10px] text-gray-400 whitespace-nowrap ml-2">${notif.time}</span>
+                                    </div>
+                                    <p class="text-xs text-gray-600 mt-1 leading-relaxed">${notif.message}</p>
+                                </div>
+                            </div>`;
+                    });
+                }
+                lucide.createIcons();
+            } else {
+                modal.classList.add('hidden');
+            }
+        }
+
+        function updateNotifBadge() {
+            const unreadCount = mockDB.notifications.filter(n => !n.read).length;
+            const badge = document.getElementById('notif-badge');
+            if (unreadCount > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+        }
+
+        function markAllRead() {
+            mockDB.notifications.forEach(n => n.read = true);
+            toggleNotifications(); 
+            updateNotifBadge();
+        }
+
+        // --- 4. SIMULASI PENGAJUAN (KEMBALI DIADAKAN) ---
+        function simulateNewRequest() {
+            const newReg = {
+                id: "REG-" + Math.floor(Math.random() * 10000),
+                userId: currentUser.nik,
+                service: "Pembuatan E-KTP Baru",
+                status: "PENCETAKAN",
+                updatedAt: new Date().toISOString(),
+                history: [
+                    { step: "Pengajuan Masuk", date: "Hari ini", done: true },
+                    { step: "Verifikasi Dokumen", date: "Baru saja", done: true },
+                    { step: "Perekaman Biometrik", date: "Terkonfirmasi", done: true },
+                    { step: "Antrian Pencetakan", date: "Sedang Proses", done: false },
+                    { step: "Selesai", date: null, done: false }
+                ]
+            };
+            
+            // Tambah ke Tracking
+            mockDB.tracking.unshift(newReg);
+            
+            // Tambah ke Notifikasi (Proaktif)
+            mockDB.notifications.unshift({ 
+                id: Date.now(), 
+                title: "Pengajuan Diterima", 
+                message: `Pengajuan Anda (${newReg.id}) telah diterima dan sedang diproses.`, 
+                time: "Baru saja", 
+                type: "success", 
+                read: false 
+            });
+            
+            alert("Simulasi Berhasil! Pengajuan baru telah dibuat.");
+            updateNotifBadge();
+            renderPage('home');
+        }
+
+        // --- 5. RENDER PAGE ---
+        function renderPage(page) {
+            const container = document.getElementById('page-content');
+            container.innerHTML = ''; 
+            window.scrollTo(0,0);
+
+            if (page === 'home') {
+                const myTracking = mockDB.tracking[0]; // Ambil yang terbaru
+                let trackingHTML = '';
+
+                if (myTracking) {
+                    // Tampilan Jika Ada Tracking (Card Status)
+                    trackingHTML = `
+                    <div class="bg-white p-4 rounded-2xl shadow-md border border-gray-100 mb-6 animate-fade-in">
+                         <div class="flex justify-between items-start mb-2">
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Status Terkini</h4>
+                                <p class="text-xs text-gray-500">${myTracking.service}</p>
+                            </div>
+                            <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-[10px] font-bold animate-pulse">PROSES</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mb-2">
+                            <div class="bg-indigo-600 h-2 rounded-full" style="width: 75%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-500">
+                            <span>${myTracking.id}</span>
+                            <span>Langkah 3 dari 4</span>
+                        </div>
+                        <button onclick="switchTab('tracking')" class="w-full mt-3 text-indigo-600 text-xs font-bold border border-indigo-100 py-2 rounded-lg hover:bg-indigo-50">Lihat Detail</button>
+                    </div>`;
+                } else {
+                    // Tampilan Jika KOSONG (Tombol Simulasi) - FITUR YANG SEMPAT HILANG
+                    trackingHTML = `
+                    <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-6 text-center mb-6 animate-fade-in">
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center mx-auto mb-3 text-indigo-600 shadow-sm">
+                            <i data-lucide="file-plus" class="w-6 h-6"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-800 mb-1">Belum Ada Pengajuan</h4>
+                        <p class="text-xs text-gray-500 mb-4">Mulai layanan adminduk Anda sekarang secara digital.</p>
+                        <button onclick="simulateNewRequest()" class="bg-indigo-600 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-lg hover:bg-indigo-700 transform active:scale-95 transition">
+                            + Simulasi Pengajuan Baru
+                        </button>
+                    </div>`;
+                }
+
+                container.innerHTML = `
+                    <!-- Info Banner -->
+                    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-4 text-white mb-6 shadow-lg animate-fade-in">
+                        <p class="text-xs opacity-80 font-semibold mb-1">VISI C-A-K-A-P</p>
+                        <h2 class="font-bold text-lg leading-tight">Layanan Adminduk yang Proaktif & Digital</h2>
+                    </div>
+
+                    ${trackingHTML}
+
+                    <h3 class="font-bold text-gray-800 mb-3">Layanan Digital</h3>
+                    <div class="grid grid-cols-3 gap-3 mb-20">
+                        ${mockDB.services.map(s => `
+                            <div class="flex flex-col items-center p-3 bg-white rounded-xl shadow-sm border border-gray-100 active:scale-95 transition cursor-pointer" onclick="alert('Fitur ini akan membuka formulir: ${s.name}')">
+                                <div class="w-10 h-10 ${s.bg} rounded-full flex items-center justify-center mb-2">
+                                    <i data-lucide="${s.icon}" class="w-5 h-5 ${s.color}"></i>
+                                </div>
+                                <span class="text-[10px] font-bold text-gray-700 text-center">${s.name}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            } else if (page === 'tracking') {
+                const t = mockDB.tracking[0];
+                if (!t) {
+                    container.innerHTML = `<div class="text-center py-20 text-gray-400"><i data-lucide="search" class="w-12 h-12 mx-auto mb-2"></i><p>Belum ada data pelacakan.</p></div>`;
+                } else {
+                    const steps = t.history.map(h => `
+                        <div class="relative pl-6 pb-6 border-l-2 ${h.done ? 'border-green-500' : 'border-gray-200'} last:border-0">
+                            <div class="absolute -left-[5px] top-0 w-2.5 h-2.5 rounded-full ${h.done ? 'bg-green-500' : 'bg-gray-300'}"></div>
+                            <p class="text-xs font-bold ${h.done ? 'text-gray-800' : 'text-gray-400'}">${h.step}</p>
+                            <p class="text-[10px] text-gray-500">${h.date || ''}</p>
+                        </div>
+                    `).join('');
+                    container.innerHTML = `<div class="bg-white p-5 rounded-2xl shadow-sm"><h2 class="font-bold text-lg mb-4 text-indigo-600">Detail Pelacakan</h2>${steps}</div>`;
+                }
+            } else if (page === 'ikd') {
+                container.innerHTML = `
+                    <h2 class="font-bold text-lg mb-4 text-indigo-600">KTP Digital (IKD)</h2>
+                    <div class="holo-card rounded-xl p-5 text-white shadow-lg mb-4">
+                        <div class="flex justify-between mb-6">
+                            <i data-lucide="shield" class="w-6 h-6 opacity-80"></i>
+                            <span class="text-[10px] border border-white/40 px-2 py-0.5 rounded">AKTIF</span>
+                        </div>
+                        <h3 class="font-bold text-xl mb-1">${currentUser.name.toUpperCase()}</h3>
+                        <p class="font-mono text-sm opacity-80">${currentUser.nik}</p>
+                        <div class="mt-6 flex items-center justify-between border-t border-white/20 pt-3">
+                            <span class="text-[10px]">Berlaku Seumur Hidup</span>
+                            <i data-lucide="qr-code" class="w-6 h-6"></i>
+                        </div>
+                    </div>
+                    <p class="text-center text-xs text-gray-500">Tunjukkan QR Code ini kepada petugas.</p>
+                `;
+            } else if (page === 'profile') {
+                container.innerHTML = `
+                    <div class="bg-white p-6 rounded-2xl shadow-sm text-center mb-4 border border-gray-100">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-full mx-auto flex items-center justify-center text-indigo-600 mb-3"><i data-lucide="user" class="w-10 h-10"></i></div>
+                        <h2 class="font-bold text-gray-800">${currentUser.name}</h2>
+                        <p class="text-sm text-gray-500">${currentUser.nik}</p>
+                    </div>
+                    <div class="bg-white rounded-xl border border-gray-100 overflow-hidden mb-6">
+                        <button class="w-full p-4 text-left text-sm flex justify-between items-center border-b border-gray-50 hover:bg-gray-50"><span>Pengaturan Akun</span><i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i></button>
+                        <button class="w-full p-4 text-left text-sm flex justify-between items-center border-b border-gray-50 hover:bg-gray-50"><span>Bantuan & FAQ</span><i data-lucide="chevron-right" class="w-4 h-4 text-gray-300"></i></button>
+                        <button onclick="location.reload()" class="w-full p-4 text-left text-sm font-bold text-red-500 hover:bg-red-50 flex items-center gap-2"><i data-lucide="log-out" class="w-4 h-4"></i> Keluar Aplikasi</button>
+                    </div>
+                `;
+            } else if (page === 'layanan') {
+                renderPage('home');
+            }
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>
