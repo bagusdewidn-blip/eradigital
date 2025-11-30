@@ -14,32 +14,10 @@
     <!-- Font Inter & Share Tech Mono -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
-    <style>
-        /* PERBAIKAN PENTING UNTUK ANDROID/MOBILE */
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: #f3f4f6; 
-            /* Fallback untuk browser lama */
-            height: 100vh; 
-            /* Solusi utama: Dynamic Viewport Height menyesuaikan address bar browser */
-            height: 100dvh; 
-            overflow: hidden; 
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Container aplikasi mengikuti tinggi dinamis body */
-        #app-container {
-            height: 100%;
-            width: 100%;
-            max-width: 28rem; /* setara max-w-md */
-            background-color: white;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-        }
+   <style>
+        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; height: 100vh; height: 100dvh; overflow: hidden; display: flex; justify-content: center; }
+        
+        #app-container { height: 100%; width: 100%; max-width: 28rem; background-color: white; position: relative; display: flex; flex-direction: column; overflow: hidden; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -47,46 +25,30 @@
         /* Animations */
         @keyframes fade-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .animate-fade-in { animation: fade-in 0.3s ease-out forwards; }
-
         @keyframes slide-up { from { transform: translateY(100%); } to { transform: translateY(0); } }
         .animate-slide-up { animation: slide-up 0.3s ease-out forwards; }
-
         @keyframes slide-down-toast { from { transform: translateY(-100%); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
         .toast-enter { animation: slide-down-toast 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
         
-        /* Scanner Animation */
         @keyframes scan-line { 0% { top: 0%; } 50% { top: 100%; } 100% { top: 0%; } }
-        .scanning-beam {
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background: #10b981;
-            box-shadow: 0 0 4px #10b981, 0 0 8px #10b981;
-            animation: scan-line 2s infinite linear;
-        }
+        .scanning-beam { position: absolute; width: 100%; height: 2px; background: #10b981; box-shadow: 0 0 4px #10b981, 0 0 8px #10b981; animation: scan-line 2s infinite linear; }
 
-        /* Clean Gradient for Card */
+        /* Clean Gradient for Card (Hanya Warna & Dekorasi, Posisi diatur di HTML) */
         .clean-card {
             background: linear-gradient(130deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
-            position: relative;
-            overflow: hidden;
             box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.3), 0 10px 10px -5px rgba(79, 70, 229, 0.2);
         }
         .clean-card::after {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-            opacity: 0.4;
-            mix-blend-mode: overlay;
-            pointer-events: none;
+            opacity: 0.4; mix-blend-mode: overlay; pointer-events: none;
         }
 
         /* 3D FLIP UTILITIES */
         .perspective-1000 { perspective: 1000px; }
         .transform-style-3d { transform-style: preserve-3d; }
         .rotate-y-180 { transform: rotateY(180deg); }
-        .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+        .backface-hidden { -webkit-backface-visibility: hidden; backface-visibility: hidden; }
     </style>
 </head>
 <body>
