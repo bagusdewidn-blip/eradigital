@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Adminduk C-A-K-A-P </title>
+    <title>Adminduk C-A-K-A-P</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,7 +15,32 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f3f4f6; height: 100vh; overflow: hidden; }
+        /* PERBAIKAN PENTING UNTUK ANDROID/MOBILE */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f3f4f6; 
+            /* Fallback untuk browser lama */
+            height: 100vh; 
+            /* Solusi utama: Dynamic Viewport Height menyesuaikan address bar browser */
+            height: 100dvh; 
+            overflow: hidden; 
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Container aplikasi mengikuti tinggi dinamis body */
+        #app-container {
+            height: 100%;
+            width: 100%;
+            max-width: 28rem; /* setara max-w-md */
+            background-color: white;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
@@ -43,17 +68,9 @@
         /* Clean Gradient for Card */
         .clean-card {
             background: linear-gradient(130deg, #4f46e5 0%, #7c3aed 50%, #db2777 100%);
-            /* Hapus relative agar 3D works */
-            position: absolute; 
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
+            position: relative;
             overflow: hidden;
             box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.3), 0 10px 10px -5px rgba(79, 70, 229, 0.2);
-            /* Backface visibility handling */
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
         }
         .clean-card::after {
             content: "";
@@ -72,13 +89,13 @@
         .backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
     </style>
 </head>
-<body class="flex justify-center h-screen overflow-hidden bg-gray-100">
+<body>
 
     <!-- TOAST CONTAINER -->
     <div id="toast-container" class="fixed top-4 left-0 right-0 z-[60] flex flex-col items-center gap-2 pointer-events-none px-4"></div>
 
     <!-- MOBILE CONTAINER -->
-    <div id="app-container" class="w-full max-w-md bg-white h-full shadow-2xl relative overflow-hidden flex flex-col">
+    <div id="app-container">
         
         <!-- 1. SPLASH SCREEN -->
         <div id="splash-screen" class="absolute inset-0 z-50 bg-indigo-600 flex flex-col items-center justify-center text-white transition-opacity duration-500">
@@ -120,15 +137,15 @@
             </header>
 
             <!-- SCROLLABLE CONTENT AREA -->
-            <main id="page-content" class="flex-1 overflow-y-auto p-4 pb-28 no-scrollbar"></main>
+            <main id="page-content" class="flex-1 overflow-y-auto p-4 pb-32 no-scrollbar"></main>
 
-            <!-- BOTTOM NAVIGATION -->
-            <nav class="bg-white border-t border-gray-200 absolute bottom-0 w-full flex justify-around py-3 px-2 pb-5 z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
+            <!-- BOTTOM NAVIGATION (Fixed Absolute) -->
+            <nav class="bg-white border-t border-gray-200 absolute bottom-0 w-full flex justify-around py-3 px-2 pb-safe z-30 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
                 <button onclick="switchTab('home')" class="nav-btn text-indigo-600" data-target="home"><i data-lucide="home" class="w-6 h-6"></i><span class="text-[10px] font-bold">Beranda</span></button>
                 <button onclick="switchTab('tracking')" class="nav-btn text-gray-400" data-target="tracking"><i data-lucide="search" class="w-6 h-6"></i><span class="text-[10px] font-bold">Lacak</span></button>
                 <!-- FAB -->
                 <div class="relative -top-8">
-                    <button onclick="toggleQuickAction()" class="w-14 h-14 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg transform transition hover:scale-105 active:scale-95">
+                    <button onclick="toggleQuickAction()" class="w-14 h-14 bg-indigo-600 rounded-full flex items-center justify-center text-white shadow-lg transform transition hover:scale-105 active:scale-95 border-4 border-gray-100">
                         <i data-lucide="plus" class="w-8 h-8"></i>
                     </button>
                 </div>
@@ -143,9 +160,18 @@
                     <div class="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-6"></div>
                     <h3 class="font-bold text-lg text-gray-800 mb-4">Aksi Cepat (Smart Scan)</h3>
                     <div class="grid grid-cols-3 gap-4">
-                        <button onclick="startScan('verify')" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-95 transition"><div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center"><i data-lucide="scan-line" class="w-6 h-6"></i></div><span class="text-xs font-bold text-center">Scan IKD<br>(Verifikasi)</span></button>
-                        <button onclick="startScan('queue')" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-green-50 text-green-700 hover:bg-green-100 active:scale-95 transition"><div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"><i data-lucide="ticket" class="w-6 h-6"></i></div><span class="text-xs font-bold text-center">Scan QR<br>Antrian</span></button>
-                        <button onclick="openServiceModal()" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 active:scale-95 transition"><div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center"><i data-lucide="file-plus" class="w-6 h-6"></i></div><span class="text-xs font-bold text-center">Ajukan<br>Manual</span></button>
+                        <button onclick="startScan('verify')" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-blue-50 text-blue-700 hover:bg-blue-100 active:scale-95 transition">
+                            <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center"><i data-lucide="scan-line" class="w-6 h-6"></i></div>
+                            <span class="text-xs font-bold text-center">Scan IKD<br>(Verifikasi)</span>
+                        </button>
+                        <button onclick="startScan('queue')" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-green-50 text-green-700 hover:bg-green-100 active:scale-95 transition">
+                            <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center"><i data-lucide="ticket" class="w-6 h-6"></i></div>
+                            <span class="text-xs font-bold text-center">Scan QR<br>Antrian</span>
+                        </button>
+                        <button onclick="openServiceModal()" class="flex flex-col items-center gap-2 p-3 rounded-xl bg-indigo-50 text-indigo-700 hover:bg-indigo-100 active:scale-95 transition">
+                            <div class="w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center"><i data-lucide="file-plus" class="w-6 h-6"></i></div>
+                            <span class="text-xs font-bold text-center">Ajukan<br>Manual</span>
+                        </button>
                     </div>
                     <button onclick="toggleQuickAction()" class="w-full mt-6 py-3 text-gray-500 font-semibold text-sm hover:text-gray-700">Tutup Menu</button>
                 </div>
@@ -225,7 +251,7 @@
                 <div class="bg-white w-full max-w-sm rounded-2xl animate-slide-up overflow-hidden">
                     <div class="bg-indigo-600 p-4 text-white text-center"><h3 class="font-bold">Pilih Jadwal</h3><p class="text-xs">Perekaman Biometrik</p></div>
                     <div class="p-5 space-y-4">
-                        <div><label class="text-xs font-bold text-gray-600">Lokasi</label><select id="sched-loc" class="w-full p-3 bg-gray-50 border rounded-lg text-sm"><option>Kantor Dinas Pusat</option><option>Kecamatan Tungkal Ilir</option><option>DISDUK CAPIL Kab. Banyuasin</option></select></div>
+                        <div><label class="text-xs font-bold text-gray-600">Lokasi</label><select id="sched-loc" class="w-full p-3 bg-gray-50 border rounded-lg text-sm"><option>Kantor Dinas Pusat</option><option>Kecamatan Sukarame</option></select></div>
                         <div class="grid grid-cols-2 gap-3"><div><label class="text-xs font-bold">Tanggal</label><input type="date" id="sched-date" class="w-full p-3 bg-gray-50 border rounded-lg text-sm"></div><div><label class="text-xs font-bold">Waktu</label><select id="sched-time" class="w-full p-3 bg-gray-50 border rounded-lg text-sm"><option>08:00-09:00</option><option>09:00-10:00</option></select></div></div>
                         <button onclick="submitSchedule()" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-xl">KONFIRMASI</button>
                         <button onclick="closeScheduleModal()" class="w-full text-gray-500 text-xs py-2">Batal</button>
